@@ -1,0 +1,98 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "VBScript",
+  "scopeName": "source.vbscript",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#date"
+    },
+    {
+      "include": "#number"
+    },
+    {
+      "include": "#declaration"
+    },
+    {
+      "include": "#keyword"
+    },
+    {
+      "include": "#constant"
+    },
+    {
+      "include": "#builtin"
+    },
+    {
+      "include": "#operator"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.apostrophe.vbscript",
+          "match": "'.*$"
+        },
+        {
+          "name": "comment.line.rem.vbscript",
+          "match": "(?i)(?<=^|:)\\s*\\brem\\b.*$"
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.vbscript",
+      "begin": "\"",
+      "end": "\"(?!\")|$",
+      "patterns": [
+        {
+          "name": "constant.character.escape.vbscript",
+          "match": "\"\""
+        }
+      ]
+    },
+    "date": {
+      "name": "constant.other.date.vbscript",
+      "match": "#[0-9/\\-:\\sAPMapm]+#"
+    },
+    "number": {
+      "name": "constant.numeric.vbscript",
+      "match": "(?i)&h[0-9a-f]+&?|&o?[0-7]+&?|\\b\\d+(\\.\\d+)?(e[+-]?\\d+)?\\b"
+    },
+    "declaration": {
+      "patterns": [
+        {
+          "match": "(?i)\\b(sub|function|class|property\\s+(?:get|let|set))\\s+([A-Za-z_][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.vbscript"
+            },
+            "2": {
+              "name": "entity.name.function.vbscript"
+            }
+          }
+        }
+      ]
+    },
+    "keyword": {
+      "name": "keyword.control.vbscript",
+      "match": "(?i)\\b(And|As|ByRef|ByVal|Call|Case|Class|Const|Default|Dim|Do|Each|Else|ElseIf|End|Eqv|Erase|Error|Execute|ExecuteGlobal|Exit|Explicit|For|Function|Get|GoTo|If|Imp|In|Is|Let|Loop|Mod|New|Next|Not|On|Option|Or|Preserve|Private|Property|Public|ReDim|Resume|Select|Set|Step|Stop|Sub|Then|To|Until|Wend|While|With|Xor)\\b"
+    },
+    "constant": {
+      "name": "constant.language.vbscript",
+      "match": "(?i)\\b(True|False|Nothing|Null|Empty|Me|vbCrLf|vbCr|vbLf|vbTab|vbNewLine|vbNullString|vbNullChar|vbOKOnly|vbOKCancel|vbYesNo|vbYesNoCancel|vbInformation|vbExclamation|vbCritical|vbQuestion|vbYes|vbNo|vbCancel|vbOK|vbBinaryCompare|vbTextCompare|vbObjectError)\\b"
+    },
+    "builtin": {
+      "name": "support.function.vbscript",
+      "match": "(?i)\\b(Abs|Array|Asc|AscW|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|ChrW|CInt|CLng|CSng|CStr|Cos|CreateObject|Date|DateAdd|DateDiff|DatePart|DateSerial|DateValue|Day|Escape|Eval|Exp|Filter|Fix|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetObject|GetRef|Hex|Hour|InputBox|InStr|InStrRev|Int|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Join|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|Mid|Minute|Month|MonthName|MsgBox|Now|Oct|Replace|RGB|Right|Rnd|Round|RTrim|ScriptEngine|Second|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Time|Timer|TimeSerial|TimeValue|Trim|TypeName|UBound|UCase|Unescape|VarType|Weekday|WeekdayName|Year|WScript|Err|Randomize)\\b"
+    },
+    "operator": {
+      "name": "keyword.operator.vbscript",
+      "match": "<>|<=|>=|[=<>&+\\-*/\\\\^]"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VbsTools type definition file",
+  "description": "Objects a host application adds to VBScript (IntelliSense for scripts that run inside an application).",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": "string", "description": "Environment name, used in \"vbscript.environments\" and in ' @environment Name." },
+    "description": { "type": "string" },
+    "globals": {
+      "type": "object",
+      "description": "Objects every script can use: name → type.",
+      "additionalProperties": { "type": "string" }
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Types of procedure parameters by name, e.g. \"Item\": \"ScreenItem\" for event procedures.",
+      "additionalProperties": { "type": "string" }
+    },
+    "progIds": {
+      "type": "object",
+      "description": "Types created by CreateObject(\"ProgID\").",
+      "additionalProperties": { "type": "string" }
+    },
+    "enums": {
+      "type": "object",
+      "description": "Named values offered for parameters and properties of that type.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "type": ["number", "string"] }
+      }
+    },
+    "types": {
+      "type": "object",
+      "description": "Types by name.",
+      "additionalProperties": { "$ref": "#/definitions/type" }
+    }
+  },
+  "definitions": {
+    "typeName": {
+      "type": "string",
+      "description": "Variant, String, Long, Integer, Boolean, Double, Single, Date, Currency, Byte, Object, a type or enum of this file, or progid:Some.ProgID."
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "element": { "$ref": "#/definitions/typeName", "description": "Type of the items in For Each." },
+        "open": { "type": "boolean", "description": "The object can have members that are not listed." },
+        "members": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              { "$ref": "#/definitions/typeName", "description": "A property of this type." },
+              { "$ref": "#/definitions/member" }
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "member": {
+      "type": "object",
+      "properties": {
+        "kind": { "enum": ["property", "method"], "default": "property" },
+        "type": { "$ref": "#/definitions/typeName", "description": "Property type, or return type of a method (none: a Sub)." },
+        "params": { "type": "array", "items": { "oneOf": [ { "type": "string" }, { "$ref": "#/definitions/parameter" } ] } },
+        "default": { "type": "boolean", "description": "The default member (obj(\"x\") calls it)." },
+        "readonly": { "type": "boolean" },
+        "doc": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "parameter": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "$ref": "#/definitions/typeName" },
+        "optional": { "type": "boolean" },
+        "default": { "description": "Default value (makes the parameter optional)." },
+        "paramArray": { "type": "boolean" },
+        "doc": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

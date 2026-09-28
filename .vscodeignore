@@ -1,0 +1,9 @@
+src/**
+node_modules/**/test/**
+**/*.map
+**/*.ts
+tsconfig.json
+build-server.ps1
+.gitignore
+media/icon.svg
+server/**/*.stamp

@@ -1,0 +1,491 @@
+{
+  "name": "vbstools-vbscript",
+  "displayName": "VbsTools: VBScript",
+  "description": "%extension.description%",
+  "version": "0.1.1",
+  "publisher": "zach-shen",
+  "author": {
+    "name": "Zach Shen"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ZachShen99/VbsTools.git"
+  },
+  "homepage": "https://github.com/ZachShen99/VbsTools#readme",
+  "bugs": {
+    "url": "https://github.com/ZachShen99/VbsTools/issues"
+  },
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Debuggers",
+    "Snippets",
+    "Linters",
+    "Formatters"
+  ],
+  "keywords": [
+    "vbscript",
+    "vbs",
+    "com",
+    "intellisense",
+    "wsh",
+    "cscript",
+    "wscript",
+    "wmi",
+    "wincc",
+    "vbsedit"
+  ],
+  "icon": "media/icon.png",
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onLanguage:vbscript",
+    "onDebugResolve:vbscript",
+    "onDebugDynamicConfigurations:vbscript"
+  ],
+  "l10n": "./l10n",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vbscript",
+        "aliases": [
+          "VBScript",
+          "vbs"
+        ],
+        "extensions": [
+          ".vbs",
+          ".vbe"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "jsonc",
+        "filenamePatterns": [
+          "*.vbstypes.json"
+        ]
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "*.vbstypes.json",
+        "url": "./schemas/vbstypes.schema.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vbscript",
+        "scopeName": "source.vbscript",
+        "path": "./syntaxes/vbscript.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "vbscript",
+        "path": "./snippets/vbscript.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "vbscript.openDocumentation",
+        "title": "%command.openDocumentation%",
+        "category": "VBScript",
+        "icon": "$(book)"
+      },
+      {
+        "command": "vbscript.saveWithEncoding",
+        "title": "%command.saveWithEncoding%",
+        "category": "VBScript"
+      },
+      {
+        "command": "vbscript.run",
+        "title": "%command.run%",
+        "category": "VBScript",
+        "icon": "$(play)"
+      },
+      {
+        "command": "vbscript.runWithArgs",
+        "title": "%command.runWithArgs%",
+        "category": "VBScript"
+      },
+      {
+        "command": "vbscript.debugWithArgs",
+        "title": "%command.debugWithArgs%",
+        "category": "VBScript"
+      },
+      {
+        "command": "vbscript.stop",
+        "title": "%command.stop%",
+        "category": "VBScript",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "vbscript.togglePlatform",
+        "title": "%command.togglePlatform%",
+        "category": "VBScript"
+      },
+      {
+        "command": "vbscript.restartServer",
+        "title": "%command.restartServer%",
+        "category": "VBScript"
+      },
+      { "command": "vbscript.library.search", "title": "%command.library.search%", "category": "%view.library%", "icon": "$(search)" },
+      { "command": "vbscript.library.clearSearch", "title": "%command.library.clearSearch%", "category": "%view.library%", "icon": "$(clear-all)" },
+      { "command": "vbscript.library.refresh", "title": "%command.library.refresh%", "category": "%view.library%", "icon": "$(refresh)" },
+      { "command": "vbscript.library.preview", "title": "%command.library.preview%", "category": "%view.library%" },
+      { "command": "vbscript.library.insert", "title": "%command.library.insert%", "category": "%view.library%", "icon": "$(insert)" },
+      { "command": "vbscript.library.newFile", "title": "%command.library.newFile%", "category": "%view.library%", "icon": "$(new-file)" },
+      { "command": "vbscript.library.copyToSnippets", "title": "%command.library.copyToSnippets%", "category": "%view.library%" },
+      { "command": "vbscript.library.newSnippet", "title": "%command.library.newSnippet%", "category": "%view.library%", "icon": "$(add)" },
+      { "command": "vbscript.library.addSelection", "title": "%command.library.addSelection%", "category": "%view.library%" },
+      { "command": "vbscript.library.editSnippet", "title": "%command.library.editSnippet%", "category": "%view.library%", "icon": "$(edit)" },
+      { "command": "vbscript.library.changeShortcut", "title": "%command.library.changeShortcut%", "category": "%view.library%" },
+      { "command": "vbscript.library.renameSnippet", "title": "%command.library.renameSnippet%", "category": "%view.library%" },
+      { "command": "vbscript.library.moveSnippet", "title": "%command.library.moveSnippet%", "category": "%view.library%" },
+      { "command": "vbscript.library.deleteSnippet", "title": "%command.library.deleteSnippet%", "category": "%view.library%" },
+      { "command": "vbscript.library.openSnippetsFile", "title": "%command.library.openSnippetsFile%", "category": "%view.library%", "icon": "$(json)" }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        { "id": "vbstools", "title": "VbsTools", "icon": "media/vbstools.svg" }
+      ]
+    },
+    "views": {
+      "vbstools": [
+        { "id": "vbscript.library", "name": "%view.library%", "icon": "media/vbstools.svg" }
+      ]
+    },
+    "menus": {
+      "editor/title/run": [
+        { "command": "vbscript.run", "when": "resourceLangId == vbscript", "group": "navigation@0" },
+        { "command": "vbscript.runWithArgs", "when": "resourceLangId == vbscript", "group": "navigation@1" }
+      ],
+      "view/title": [
+        { "command": "vbscript.library.search", "when": "view == vbscript.library", "group": "navigation@1" },
+        { "command": "vbscript.library.clearSearch", "when": "view == vbscript.library && vbscript.librarySearch", "group": "navigation@2" },
+        { "command": "vbscript.library.newSnippet", "when": "view == vbscript.library", "group": "navigation@3" },
+        { "command": "vbscript.library.refresh", "when": "view == vbscript.library", "group": "navigation@4" },
+        { "command": "vbscript.library.openSnippetsFile", "when": "view == vbscript.library", "group": "more@1" },
+        { "command": "vbscript.openDocumentation", "when": "view == vbscript.library", "group": "more@2" }
+      ],
+      "view/item/context": [
+        { "command": "vbscript.library.insert", "when": "view == vbscript.library && viewItem =~ /^(sample|snippet)$/", "group": "inline@1" },
+        { "command": "vbscript.library.newFile", "when": "view == vbscript.library && viewItem == sample", "group": "inline@2" },
+        { "command": "vbscript.library.editSnippet", "when": "view == vbscript.library && viewItem == snippet", "group": "inline@2" },
+        { "command": "vbscript.library.newSnippet", "when": "view == vbscript.library && viewItem =~ /^(group-mine|folder-mine)$/", "group": "inline@1" },
+        { "command": "vbscript.library.insert", "when": "view == vbscript.library && viewItem =~ /^(sample|snippet)$/", "group": "1_use@1" },
+        { "command": "vbscript.library.newFile", "when": "view == vbscript.library && viewItem =~ /^(sample|snippet)$/", "group": "1_use@2" },
+        { "command": "vbscript.library.copyToSnippets", "when": "view == vbscript.library && viewItem == sample", "group": "1_use@3" },
+        { "command": "vbscript.library.editSnippet", "when": "view == vbscript.library && viewItem == snippet", "group": "2_edit@1" },
+        { "command": "vbscript.library.changeShortcut", "when": "view == vbscript.library && viewItem == snippet", "group": "2_edit@2" },
+        { "command": "vbscript.library.renameSnippet", "when": "view == vbscript.library && viewItem == snippet", "group": "2_edit@3" },
+        { "command": "vbscript.library.moveSnippet", "when": "view == vbscript.library && viewItem == snippet", "group": "2_edit@4" },
+        { "command": "vbscript.library.deleteSnippet", "when": "view == vbscript.library && viewItem == snippet", "group": "3_delete@1" },
+        { "command": "vbscript.library.newSnippet", "when": "view == vbscript.library && viewItem =~ /^(group-mine|folder-mine)$/", "group": "1_use@1" }
+      ],
+      "editor/context": [
+        {
+          "command": "vbscript.library.addSelection",
+          "when": "editorLangId == vbscript",
+          "group": "vbscript@9"
+        },
+        {
+          "command": "vbscript.run",
+          "when": "editorLangId == vbscript",
+          "group": "vbscript@1"
+        },
+        {
+          "command": "vbscript.runWithArgs",
+          "when": "editorLangId == vbscript",
+          "group": "vbscript@2"
+        },
+        {
+          "command": "vbscript.debugWithArgs",
+          "when": "editorLangId == vbscript",
+          "group": "vbscript@3"
+        }
+      ],
+      "commandPalette": [
+        { "command": "vbscript.saveWithEncoding", "when": "editorLangId == vbscript" },
+        { "command": "vbscript.library.preview", "when": "false" },
+        { "command": "vbscript.library.insert", "when": "false" },
+        { "command": "vbscript.library.newFile", "when": "false" },
+        { "command": "vbscript.library.copyToSnippets", "when": "false" },
+        { "command": "vbscript.library.editSnippet", "when": "false" },
+        { "command": "vbscript.library.changeShortcut", "when": "false" },
+        { "command": "vbscript.library.renameSnippet", "when": "false" },
+        { "command": "vbscript.library.moveSnippet", "when": "false" },
+        { "command": "vbscript.library.deleteSnippet", "when": "false" },
+        { "command": "vbscript.library.clearSearch", "when": "vbscript.librarySearch" },
+        {
+          "command": "vbscript.stop",
+          "when": "vbscript.running"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "vbscript.run",
+        "key": "ctrl+f5",
+        "when": "editorLangId == vbscript && !inDebugMode"
+      },
+      {
+        "command": "vbscript.runWithArgs",
+        "key": "ctrl+shift+f5",
+        "when": "editorLangId == vbscript && !inDebugMode"
+      },
+      {
+        "command": "vbscript.stop",
+        "key": "shift+f5",
+        "when": "vbscript.running && !inDebugMode"
+      }
+    ],
+    "configuration": {
+      "title": "VBScript",
+      "properties": {
+        "vbscript.languageServer.path": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "%config.languageServer.path%"
+        },
+        "vbscript.languageServer.trace": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "%config.languageServer.trace%"
+        },
+        "vbscript.format.keywordCase": {
+          "type": "string",
+          "enum": [
+            "pascal",
+            "preserve"
+          ],
+          "enumDescriptions": [
+            "%config.format.keywordCase.pascal%",
+            "%config.format.keywordCase.preserve%"
+          ],
+          "default": "pascal",
+          "markdownDescription": "%config.format.keywordCase%"
+        },
+        "vbscript.inlayHints.parameterNames": {
+          "type": "string",
+          "enum": [
+            "none",
+            "literals",
+            "all"
+          ],
+          "enumDescriptions": [
+            "%config.inlayHints.parameterNames.none%",
+            "%config.inlayHints.parameterNames.literals%",
+            "%config.inlayHints.parameterNames.all%"
+          ],
+          "default": "literals",
+          "markdownDescription": "%config.inlayHints.parameterNames%"
+        },
+        "vbscript.codeLens.references": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%config.codeLens.references%"
+        },
+        "vbscript.run.host": {
+          "type": "string",
+          "enum": [
+            "cscript",
+            "vbstools"
+          ],
+          "enumDescriptions": [
+            "%config.run.host.cscript%",
+            "%config.run.host.vbstools%"
+          ],
+          "default": "vbstools",
+          "markdownDescription": "%config.run.host%"
+        },
+        "vbscript.run.console": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "output",
+            "terminal"
+          ],
+          "enumDescriptions": [
+            "%config.run.console.auto%",
+            "%config.run.console.output%",
+            "%config.run.console.terminal%"
+          ],
+          "default": "auto",
+          "markdownDescription": "%config.run.console%"
+        },
+        "vbscript.run.scriptHostPath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "%config.run.scriptHostPath%"
+        },
+        "vbscript.run.platform": {
+          "type": "string",
+          "enum": [
+            "x64",
+            "x86"
+          ],
+          "default": "x64",
+          "markdownDescription": "%config.run.platform%"
+        },
+        "vbscript.debug.trace": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "%config.debug.trace%"
+        },
+        "vbscript.encoding.ansi": {
+          "type": "string",
+          "enum": ["auto", "gbk", "shiftjis", "euckr", "cp950", "windows874", "windows1250", "windows1251", "windows1252", "windows1253", "windows1254", "windows1255", "windows1256", "windows1257", "windows1258"],
+          "default": "auto",
+          "markdownDescription": "%config.encoding.ansi%"
+        },
+        "vbscript.encoding.check": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%config.encoding.check%"
+        },
+        "vbscript.library.samplesFile": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "%config.library.samplesFile%"
+        },
+        "vbscript.environments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": [
+              "WinCC"
+            ]
+          },
+          "default": [],
+          "markdownDescription": "%config.environments%"
+        },
+        "vbscript.typeFiles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "%config.typeFiles%"
+        }
+      }
+    },
+    "breakpoints": [
+      {
+        "language": "vbscript"
+      }
+    ],
+    "debuggers": [
+      {
+        "type": "vbscript",
+        "label": "VBScript",
+        "languages": [
+          "vbscript"
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "%debug.launch.program%",
+                "default": "${file}"
+              },
+              "args": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "%debug.launch.args%",
+                "default": []
+              },
+              "cwd": {
+                "type": "string",
+                "description": "%debug.launch.cwd%",
+                "default": "${fileDirname}"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "x64",
+                  "x86"
+                ],
+                "markdownDescription": "%debug.launch.platform%"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "%debug.launch.stopOnEntry%",
+                "default": false
+              },
+              "console": {
+                "type": "string",
+                "enum": [
+                  "internalConsole",
+                  "integratedTerminal",
+                  "externalTerminal"
+                ],
+                "enumDescriptions": [
+                  "%debug.launch.console.internalConsole%",
+                  "%debug.launch.console.integratedTerminal%",
+                  "%debug.launch.console.externalTerminal%"
+                ],
+                "default": "internalConsole",
+                "description": "%debug.launch.console%"
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "vbscript",
+            "request": "launch",
+            "name": "Debug VBScript",
+            "program": "${file}"
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "%debug.snippet0.label%",
+            "description": "%debug.snippet0.description%",
+            "body": {
+              "type": "vbscript",
+              "request": "launch",
+              "name": "Debug VBScript",
+              "program": "^\"\\${file}\""
+            }
+          },
+          {
+            "label": "%debug.snippet1.label%",
+            "description": "%debug.snippet1.description%",
+            "body": {
+              "type": "vbscript",
+              "request": "launch",
+              "name": "Debug VBScript (terminal)",
+              "program": "^\"\\${file}\"",
+              "args": [],
+              "console": "integratedTerminal"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "l10n": "npx @vscode/l10n-dev export --outDir ./l10n ./src",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "~1.100.0",
+    "@vscode/vsce": "^3.2.0",
+    "typescript": "^5.4.0"
+  }
+}

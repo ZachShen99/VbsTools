@@ -1,0 +1,219 @@
+{
+	// Built-in VBScript snippets (VS Code snippet format).
+	// Used by the VS Code extension and embedded in VbsTools Studio (F4).
+	// "folder" groups snippets in VbsTools Studio's snippet manager; VS Code ignores it.
+	// Note: VBScript does not import type library constants, so snippets use
+	// literal values with the constant name in a comment.
+
+	"FileSystemObject": {
+		"prefix": "fso",
+		"body": "Set ${1:fso} = CreateObject(\"Scripting.FileSystemObject\")$0",
+		"description": "Create a Scripting.FileSystemObject",
+		"folder": "Objects"
+	},
+	"Dictionary": {
+		"prefix": "dict",
+		"body": "Set ${1:dict} = CreateObject(\"Scripting.Dictionary\")$0",
+		"description": "Create a Scripting.Dictionary",
+		"folder": "Objects"
+	},
+	"WScript.Shell": {
+		"prefix": "shell",
+		"body": "Set ${1:sh} = CreateObject(\"WScript.Shell\")$0",
+		"description": "Create a WScript.Shell",
+		"folder": "Objects"
+	},
+	"WScript.Network": {
+		"prefix": "net",
+		"body": "Set ${1:net} = CreateObject(\"WScript.Network\")$0",
+		"description": "Create a WScript.Network",
+		"folder": "Objects"
+	},
+	"Read text file": {
+		"prefix": "readfile",
+		"body": [
+			"Set ${1:fso} = CreateObject(\"Scripting.FileSystemObject\")",
+			"Set ${2:ts} = $1.OpenTextFile(\"${3:C:\\temp\\input.txt}\", 1) ' 1 = ForReading",
+			"Do Until $2.AtEndOfStream",
+			"\t${4:line} = $2.ReadLine",
+			"\t$0",
+			"Loop",
+			"$2.Close"
+		],
+		"description": "Read a text file line by line",
+		"folder": "Scripts"
+	},
+	"Write text file": {
+		"prefix": "writefile",
+		"body": [
+			"Set ${1:fso} = CreateObject(\"Scripting.FileSystemObject\")",
+			"Set ${2:ts} = $1.CreateTextFile(\"${3:C:\\temp\\output.txt}\", True)",
+			"$2.WriteLine ${4:\"text\"}$0",
+			"$2.Close"
+		],
+		"description": "Create (overwrite) a text file and write to it",
+		"folder": "Scripts"
+	},
+	"Excel": {
+		"prefix": "xl",
+		"body": [
+			"Set ${1:xlApp} = CreateObject(\"Excel.Application\")",
+			"$1.Visible = ${2|True,False|}",
+			"Set ${3:wb} = $1.Workbooks.Open(\"${4:C:\\temp\\book.xlsx}\")",
+			"Set ${5:ws} = $3.Worksheets(${6:1})",
+			"$0",
+			"$3.Close False",
+			"$1.Quit"
+		],
+		"description": "Open an Excel workbook, work with a sheet, quit",
+		"folder": "Objects"
+	},
+	"Word": {
+		"prefix": "word",
+		"body": [
+			"Set ${1:wdApp} = CreateObject(\"Word.Application\")",
+			"$1.Visible = ${2|True,False|}",
+			"Set ${3:doc} = $1.Documents.Add",
+			"$3.Content.Text = \"${4:Hello}\"$0"
+		],
+		"description": "Start Word and create a document",
+		"folder": "Objects"
+	},
+	"For Each": {
+		"prefix": "fe",
+		"body": ["For Each ${1:item} In ${2:collection}", "\t$0", "Next"],
+		"description": "For Each ... Next",
+		"folder": "Statements"
+	},
+	"For": {
+		"prefix": "for",
+		"body": ["For ${1:i} = ${2:1} To ${3:10}", "\t$0", "Next"],
+		"description": "For ... Next",
+		"folder": "Statements"
+	},
+	"If": {
+		"prefix": "if",
+		"body": ["If ${1:condition} Then", "\t$0", "End If"],
+		"description": "If ... End If",
+		"folder": "Statements"
+	},
+	"If Else": {
+		"prefix": "ife",
+		"body": ["If ${1:condition} Then", "\t$2", "Else", "\t$0", "End If"],
+		"description": "If ... Else ... End If",
+		"folder": "Statements"
+	},
+	"Select Case": {
+		"prefix": "sel",
+		"body": ["Select Case ${1:value}", "\tCase ${2:1}", "\t\t$0", "\tCase Else", "\t\t", "End Select"],
+		"description": "Select Case ... End Select",
+		"folder": "Statements"
+	},
+	"Do While": {
+		"prefix": "do",
+		"body": ["Do While ${1:condition}", "\t$0", "Loop"],
+		"description": "Do While ... Loop",
+		"folder": "Statements"
+	},
+	"Function": {
+		"prefix": "func",
+		"body": ["Function ${1:Name}(${2})", "\t$0", "\t$1 = ${3:Empty}", "End Function"],
+		"description": "Function ... End Function",
+		"folder": "Statements"
+	},
+	"Sub": {
+		"prefix": "sub",
+		"body": ["Sub ${1:Name}(${2})", "\t$0", "End Sub"],
+		"description": "Sub ... End Sub",
+		"folder": "Statements"
+	},
+	"Class": {
+		"prefix": "cls",
+		"body": [
+			"Class ${1:Name}",
+			"\tPrivate m_${2:Value}",
+			"",
+			"\tPrivate Sub Class_Initialize()",
+			"\t\t$0",
+			"\tEnd Sub",
+			"",
+			"\tPublic Property Get $2()",
+			"\t\t$2 = m_$2",
+			"\tEnd Property",
+			"",
+			"\tPublic Property Let $2(v)",
+			"\t\tm_$2 = v",
+			"\tEnd Property",
+			"End Class"
+		],
+		"description": "Class with a property",
+		"folder": "Statements"
+	},
+	"WMI query": {
+		"prefix": "wmi",
+		"body": [
+			"Set ${1:wmi} = GetObject(\"winmgmts:{impersonationLevel=impersonate}!\\\\\\\\${2:.}\\\\root\\\\cimv2\")",
+			"Set ${3:items} = $1.ExecQuery(\"SELECT * FROM ${4:Win32_Process}\")",
+			"For Each ${5:item} In $3",
+			"\tWScript.Echo $5.${6:Name}$0",
+			"Next"
+		],
+		"description": "Query WMI and loop over the results",
+		"folder": "Scripts"
+	},
+	"On Error": {
+		"prefix": "oe",
+		"body": [
+			"On Error Resume Next",
+			"$1",
+			"If Err.Number <> 0 Then",
+			"\tWScript.Echo \"Error \" & Err.Number & \": \" & Err.Description",
+			"\tErr.Clear",
+			"End If",
+			"On Error GoTo 0$0"
+		],
+		"description": "Handle a runtime error",
+		"folder": "Statements"
+	},
+	"HTTP GET": {
+		"prefix": "http",
+		"body": [
+			"Set ${1:http} = CreateObject(\"MSXML2.ServerXMLHTTP.6.0\")",
+			"$1.Open \"GET\", \"${2:https://example.com/}\", False",
+			"$1.Send",
+			"If $1.Status = 200 Then",
+			"\tWScript.Echo $1.ResponseText$0",
+			"End If"
+		],
+		"description": "Synchronous HTTP GET with ServerXMLHTTP",
+		"folder": "Objects"
+	},
+	"ADO query": {
+		"prefix": "ado",
+		"body": [
+			"Set ${1:conn} = CreateObject(\"ADODB.Connection\")",
+			"$1.Open \"${2:Provider=SQLOLEDB;Data Source=server;Initial Catalog=db;Integrated Security=SSPI}\"",
+			"Set ${3:rs} = $1.Execute(\"${4:SELECT * FROM table}\")",
+			"Do Until $3.EOF",
+			"\tWScript.Echo $3.Fields(${5:0}).Value$0",
+			"\t$3.MoveNext",
+			"Loop",
+			"$3.Close",
+			"$1.Close"
+		],
+		"description": "Open an ADO connection and loop over a recordset",
+		"folder": "Objects"
+	},
+	"Arguments": {
+		"prefix": "args",
+		"body": [
+			"If WScript.Arguments.Count < ${1:1} Then",
+			"\tWScript.Echo \"Usage: ${2:script.vbs} ${3:<file>}\"",
+			"\tWScript.Quit 1",
+			"End If",
+			"${4:arg} = WScript.Arguments(0)$0"
+		],
+		"description": "Check and read command-line arguments",
+		"folder": "Scripts"
+	}
+}
