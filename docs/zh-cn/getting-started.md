@@ -6,13 +6,19 @@
    也可以在命令行执行：
 
    ```powershell
-   code --install-extension .\vbstools-vbscript-win32-x64-0.1.1.vsix
+   code --install-extension .\vbstools-vbscript-win32-x64-0.2.0.vsix
    ```
 
 2. 安装后执行 **Developer: Reload Window**（Ctrl+Shift+P）。
 3. 升级时如果版本号没变，加 `--force` 覆盖安装。
 
 插件自带语言服务器和脚本宿主（x64 / x86），不需要另外安装 .NET。
+
+## 入门引导
+
+安装后可以打开 **VbsTools 入门** 页面（**帮助 → 欢迎**，在"演练"中选择），按步骤体验：新建示例脚本、运行、调试、代码库、宿主环境和使用说明。每一步都有按钮，点一下即可执行。
+
+![入门引导](../../media/screenshots/walkthrough.gif)
 
 ## 第一个脚本
 

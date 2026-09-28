@@ -2,6 +2,8 @@
 
 ## 运行命令
 
+![运行脚本：输出面板和问题面板](../../media/screenshots/run.png)
+
 | 命令 | 快捷键 | 说明 |
 |---|---|---|
 | VBScript: 运行脚本 | Ctrl+F5 | 运行当前脚本（未保存的修改会先保存） |
@@ -54,6 +56,8 @@ cscript 和 wscript 只能读两种编码：**带 BOM 的 UTF-16 LE**，或**系
 2. **编码警告**：文件为 UTF-8 且含有非 ASCII 字符（中文、日文等），或为带 BOM 的 UTF-8 时，显示警告：
    - UTF-8：VbsTools 宿主能正确读取，但 cscript、双击运行、计划任务会显示乱码；
    - 带 BOM 的 UTF-8：cscript 直接报"无效字符"。
+![编码警告和快速修复](../../media/screenshots/encoding.gif)
+
 3. **转换编码**：警告处按 Ctrl+. 选择"另存为 UTF-16 LE"（任何系统都能运行）或"另存为 ANSI"；也可以随时执行 **VBScript: 以指定编码保存…**。
 
 | 编码 | cscript / wscript | VbsTools 宿主 | 说明 |

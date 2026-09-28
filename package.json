@@ -2,7 +2,7 @@
   "name": "vbstools-vbscript",
   "displayName": "VbsTools: VBScript",
   "description": "%extension.description%",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "zach-shen",
   "author": {
     "name": "Zach Shen"
@@ -47,6 +47,82 @@
   ],
   "l10n": "./l10n",
   "contributes": {
+    "walkthroughs": [
+      {
+        "id": "gettingStarted",
+        "title": "%walkthrough.title%",
+        "description": "%walkthrough.description%",
+        "steps": [
+          {
+            "id": "newScript",
+            "title": "%walkthrough.newScript.title%",
+            "description": "%walkthrough.newScript.description%",
+            "media": {
+              "markdown": "%walkthrough.newScript.media%"
+            },
+            "completionEvents": [
+              "onCommand:vbscript.walkthrough.newScript"
+            ]
+          },
+          {
+            "id": "run",
+            "title": "%walkthrough.run.title%",
+            "description": "%walkthrough.run.description%",
+            "media": {
+              "markdown": "%walkthrough.run.media%"
+            },
+            "completionEvents": [
+              "onCommand:vbscript.run"
+            ]
+          },
+          {
+            "id": "debug",
+            "title": "%walkthrough.debug.title%",
+            "description": "%walkthrough.debug.description%",
+            "media": {
+              "markdown": "%walkthrough.debug.media%"
+            },
+            "completionEvents": [
+              "onContext:inDebugMode",
+              "onCommand:vbscript.walkthrough.debug"
+            ]
+          },
+          {
+            "id": "library",
+            "title": "%walkthrough.library.title%",
+            "description": "%walkthrough.library.description%",
+            "media": {
+              "markdown": "%walkthrough.library.media%"
+            },
+            "completionEvents": [
+              "onView:vbscript.library"
+            ]
+          },
+          {
+            "id": "environment",
+            "title": "%walkthrough.environment.title%",
+            "description": "%walkthrough.environment.description%",
+            "media": {
+              "markdown": "%walkthrough.environment.media%"
+            },
+            "completionEvents": [
+              "onStepSelected"
+            ]
+          },
+          {
+            "id": "docs",
+            "title": "%walkthrough.docs.title%",
+            "description": "%walkthrough.docs.description%",
+            "media": {
+              "markdown": "%walkthrough.docs.media%"
+            },
+            "completionEvents": [
+              "onCommand:vbscript.openDocumentation"
+            ]
+          }
+        ]
+      }
+    ],
     "languages": [
       {
         "id": "vbscript",
@@ -87,6 +163,16 @@
       }
     ],
     "commands": [
+      {
+        "command": "vbscript.walkthrough.newScript",
+        "title": "%command.walkthrough.newScript%",
+        "category": "VBScript"
+      },
+      {
+        "command": "vbscript.walkthrough.debug",
+        "title": "%command.walkthrough.debug%",
+        "category": "VBScript"
+      },
       {
         "command": "vbscript.openDocumentation",
         "title": "%command.openDocumentation%",
@@ -208,6 +294,7 @@
       ],
       "commandPalette": [
         { "command": "vbscript.saveWithEncoding", "when": "editorLangId == vbscript" },
+        { "command": "vbscript.walkthrough.debug", "when": "false" },
         { "command": "vbscript.library.preview", "when": "false" },
         { "command": "vbscript.library.insert", "when": "false" },
         { "command": "vbscript.library.newFile", "when": "false" },

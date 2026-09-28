@@ -1,4 +1,10 @@
 {
+  "Save the sample script": "サンプル スクリプトを保存",
+  "Open a VBScript file first.": "先に VBScript ファイルを開いてください。",
+  "VbsTools sample script": "VbsTools サンプル スクリプト",
+  "Type fso. on the empty line below to see the members of FileSystemObject (then delete it again):": "下の空行に fso. と入力すると FileSystemObject のメンバーが表示されます（確認したら削除してください）:",
+  "the Windows folder": "Windows フォルダー",
+  "F9 sets a breakpoint here, F5 starts debugging": "ここで F9 を押すとブレークポイント、F5 でデバッグ開始",
   "Arguments for {0}": "{0} の引数",
   "Command line passed to the script (WScript.Arguments). Quote arguments that contain spaces. Remembered for this script, also for F5.": "スクリプトに渡すコマンドライン（WScript.Arguments）。空白を含む引数は引用符で囲んでください。スクリプトごとに記憶され、F5 のデバッグでも使われます。",
   "Scripts run and debug as 32-bit ({0}). Click to switch.": "スクリプトを 32 ビットで実行・デバッグします（{0}）。クリックで切り替え。",

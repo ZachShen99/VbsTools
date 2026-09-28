@@ -6,13 +6,19 @@
    Or from a command line:
 
    ```powershell
-   code --install-extension .\vbstools-vbscript-win32-x64-0.1.1.vsix
+   code --install-extension .\vbstools-vbscript-win32-x64-0.2.0.vsix
    ```
 
 2. Run **Developer: Reload Window** (Ctrl+Shift+P).
 3. To reinstall the same version, add `--force`.
 
 The language server and the script host (x64 / x86) are included; nothing else (such as .NET) needs to be installed.
+
+## Walkthrough
+
+The **Get Started with VbsTools** page (**Help → Welcome**, under Walkthroughs) takes you through a sample script, running, debugging, the Code Library, host environments and this guide — each step with a button that does it.
+
+![Walkthrough](../../media/screenshots/walkthrough.gif)
 
 ## A first script
 

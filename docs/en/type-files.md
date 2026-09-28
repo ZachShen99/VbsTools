@@ -22,6 +22,8 @@ Sub OnClick(ByVal Item)
 End Sub
 ```
 
+![WinCC environment](../../media/screenshots/wincc.gif)
+
 The built-in WinCC definitions were made from the WinCC VBS reference; a member may differ in your version. Add what is missing in a type definition file of your own in the workspace.
 
 ## Writing type definition files

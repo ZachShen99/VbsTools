@@ -8,6 +8,8 @@ for VBScript (`.vbs`).
 > **Windows only.** Type information comes from the COM type libraries registered on your machine, and scripts
 > run in the bundled script host. Syntax highlighting works everywhere.
 
+![IntelliSense for COM objects](media/screenshots/intellisense.gif)
+
 ## IntelliSense for COM objects
 
 - `Set fso = CreateObject("Scripting.FileSystemObject")` → `fso.` lists its members; chains
@@ -22,6 +24,8 @@ for VBScript (`.vbs`).
 - **Included scripts**: `Include "lib\common.vbs"` (an `ExecuteGlobal` helper) or `' @include lib\common.vbs` —
   their procedures, classes and globals complete and are not reported as undefined; F12 and Ctrl+click open them
 
+![WinCC: HMIRuntime objects](media/screenshots/wincc.gif)
+
 ## Checks and navigation
 
 - Syntax errors as you type (checked by vbscript.dll itself — the script is never run), `Option Explicit`
@@ -31,6 +35,8 @@ for VBScript (`.vbs`).
   classes used as `obj.Member` — call hierarchy (Shift+Alt+H), *N references* above procedures
 - Semantic highlighting, Format Document (Shift+Alt+F) with optional keyword case normalization, folding by
   blocks and by `'#Region Name` … `'#End Region`
+
+![Diagnostics and quick fixes](media/screenshots/diagnostics.gif)
 
 ## Run and debug
 
@@ -45,6 +51,8 @@ for VBScript (`.vbs`).
   `WScript` object, COM events through `WScript.CreateObject(progId, "prefix_")` / `WScript.ConnectObject`),
   or in cscript itself (`vbscript.run.host`).
 
+![Debugging](media/screenshots/debug.gif)
+
 ## Code Library
 
 The VbsTools icon in the activity bar opens the **Code Library**:
@@ -56,6 +64,8 @@ The VbsTools icon in the activity bar opens the **Code Library**:
   *Add to My Snippets…* in the editor context menu saves the selection. Shared with VbsTools Studio.
 
 Built-in snippets (`fso`, `dict`, `fe`, `xl`, `wmi`, …) complete as usual.
+
+![Code Library](media/screenshots/library.gif)
 
 ## Settings you may want
 
@@ -87,6 +97,8 @@ UTF-8, which is what VS Code saves by default. So:
   prints garbled text in cscript / wscript: a warning offers *Save as UTF-16 LE* (runs everywhere) or
   *Save as ANSI*; **VBScript: Save with Encoding…** does the same at any time
 
+![Encoding warning and quick fix](media/screenshots/encoding.gif)
+
 ## Documentation
 
 **VBScript: Open Documentation** in the Command Palette opens the user guide (English, 简体中文): getting started,
@@ -106,6 +118,8 @@ VBScript（`.vbs`）开发工具：能理解 COM 对象的智能提示、调试�
 
 > **仅支持 Windows。** 类型信息来自本机注册的 COM 类型库，脚本在插件自带的脚本宿主中运行。语法高亮在任何系统上都可用。
 
+![COM 对象的智能提示](media/screenshots/intellisense.gif)
+
 ### COM 对象的智能提示
 
 - `Set fso = CreateObject("Scripting.FileSystemObject")` 之后输入 `fso.` 会列出它的成员；支持链式调用
@@ -119,6 +133,8 @@ VBScript（`.vbs`）开发工具：能理解 COM 对象的智能提示、调试�
 - **Include 文件**：`Include "lib\common.vbs"`（使用 `ExecuteGlobal` 的辅助过程）或 `' @include lib\common.vbs`——
   其中的过程、类和全局变量可以补全，不会报告为未定义；F12 和 Ctrl+单击可以打开
 
+![WinCC：HMIRuntime 对象](media/screenshots/wincc.gif)
+
 ### 检查和导航
 
 - 边输入边检查语法错误（由 vbscript.dll 检查，脚本不会被执行）、`Option Explicit` 下未声明的变量、调用不存在的过程、
@@ -126,6 +142,8 @@ VBScript（`.vbs`）开发工具：能理解 COM 对象的智能提示、调试�
 - 大纲、转到定义（F12）、查找所有引用（Shift+F12）、重命名（F2，包括 `obj.Member` 形式的脚本类成员）、
   调用层次结构（Shift+Alt+H）、过程上方的引用计数
 - 语义高亮、格式化文档（Shift+Alt+F，可统一关键字大小写）、按代码块和 `'#Region 名称` … `'#End Region` 折叠
+
+![错误检查和快速修复](media/screenshots/diagnostics.gif)
 
 ### 运行和调试
 
@@ -138,6 +156,8 @@ VBScript（`.vbs`）开发工具：能理解 COM 对象的智能提示、调试�
   `WScript.CreateObject(progId, "prefix_")` / `WScript.ConnectObject` 连接的 COM 事件），也可以改用 cscript
   （`vbscript.run.host`）。
 
+![调试](media/screenshots/debug.gif)
+
 ### 代码库
 
 点击活动栏中的 VbsTools 图标打开**代码库**：
@@ -149,6 +169,8 @@ VBScript（`.vbs`）开发工具：能理解 COM 对象的智能提示、调试�
   可以保存选中的代码。与 VbsTools Studio 共用。
 
 内置代码片段（`fso`、`dict`、`fe`、`xl`、`wmi` 等）照常可用。
+
+![代码库](media/screenshots/library.gif)
 
 ### 常用设置
 
@@ -175,6 +197,8 @@ cscript 和 wscript 只能按带 BOM 的 UTF-16 LE 或系统 ANSI 代码页读�
 - VS Code 会显示成乱码的 ANSI 脚本（GBK、Shift JIS 等）会按系统代码页重新打开（用 `vbscript.encoding.ansi` 指定其他代码页）
 - 含中文、日文等字符的 UTF-8 脚本在 VbsTools 宿主中运行正常，但在 cscript / wscript 中会乱码：警告处可以选择
   "另存为 UTF-16 LE"（任何系统都能运行）或"另存为 ANSI"；随时也可以执行 **VBScript: 以指定编码保存…**
+
+![编码警告和快速修复](media/screenshots/encoding.gif)
 
 ### 使用说明
 

@@ -22,6 +22,8 @@ Sub OnClick(ByVal Item)
 End Sub
 ```
 
+![WinCC 环境](../../media/screenshots/wincc.gif)
+
 内置的 WinCC 描述是根据 WinCC VBS 参考整理的，个别成员可能与你的版本不同。发现缺漏时，可以在工作区里另写一个类型描述文件补充。
 
 ## 自己编写类型描述文件

@@ -2,6 +2,8 @@
 
 点击活动栏中的 VbsTools 图标打开"代码库"视图，里面有两组内容。
 
+![代码库](../../media/screenshots/library.gif)
+
 ## 示例
 
 - 安装了 VbsEdit 时，显示 VbsEdit 自带的示例集（约 1700 个，按主题分类）。插件在 VbsEdit 安装目录中查找 `samples2.dat` / `samples.dat`；放在其他位置时用设置 `vbscript.library.samplesFile` 指定。

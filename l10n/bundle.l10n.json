@@ -1,4 +1,10 @@
 {
+  "Save the sample script": "Save the sample script",
+  "Open a VBScript file first.": "Open a VBScript file first.",
+  "VbsTools sample script": "VbsTools sample script",
+  "Type fso. on the empty line below to see the members of FileSystemObject (then delete it again):": "Type fso. on the empty line below to see the members of FileSystemObject (then delete it again):",
+  "the Windows folder": "the Windows folder",
+  "F9 sets a breakpoint here, F5 starts debugging": "F9 sets a breakpoint here, F5 starts debugging",
   "Arguments for {0}": "Arguments for {0}",
   "Command line passed to the script (WScript.Arguments). Quote arguments that contain spaces. Remembered for this script, also for F5.": "Command line passed to the script (WScript.Arguments). Quote arguments that contain spaces. Remembered for this script, also for F5.",
   "Scripts run and debug as 32-bit ({0}). Click to switch.": "Scripts run and debug as 32-bit ({0}). Click to switch.",

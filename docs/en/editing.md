@@ -2,6 +2,8 @@
 
 ## IntelliSense for COM objects
 
+![IntelliSense for COM objects](../../media/screenshots/intellisense.gif)
+
 The extension reads members from the COM type libraries registered on your machine and infers the types of variables from the code:
 
 ```vbscript
@@ -40,6 +42,8 @@ Your own snippets with their own shortcuts: see [Code Library](code-library.md).
 ## Diagnostics
 
 Checked as you type; the script is never run:
+
+![Diagnostics and quick fixes](../../media/screenshots/diagnostics.gif)
 
 | Check | Severity |
 |---|---|

@@ -1,4 +1,10 @@
 {
+  "Save the sample script": "保存示例脚本",
+  "Open a VBScript file first.": "请先打开一个 VBScript 文件。",
+  "VbsTools sample script": "VbsTools 示例脚本",
+  "Type fso. on the empty line below to see the members of FileSystemObject (then delete it again):": "在下面的空行输入 fso. 可以看到 FileSystemObject 的成员（看完再删掉）：",
+  "the Windows folder": "Windows 文件夹",
+  "F9 sets a breakpoint here, F5 starts debugging": "在这里按 F9 设断点，按 F5 开始调试",
   "Arguments for {0}": "{0} 的参数",
   "Command line passed to the script (WScript.Arguments). Quote arguments that contain spaces. Remembered for this script, also for F5.": "传给脚本的命令行（WScript.Arguments）。含空格的参数请加引号。按脚本记住，F5 调试时也使用。",
   "Scripts run and debug as 32-bit ({0}). Click to switch.": "脚本以 32 位运行和调试（{0}）。点击切换。",

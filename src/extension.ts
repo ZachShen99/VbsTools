@@ -10,6 +10,7 @@ import {
 import { splitCommandLine } from "./commandLine";
 import { ScriptEncodings } from "./encoding";
 import { CodeLibrary } from "./library";
+import { Walkthrough, scriptEditor } from "./walkthrough";
 import { PlatformStatus, ScriptRunner, activeScript, resolveScriptHost, scriptText, togglePlatform } from "./run";
 
 /**
@@ -53,6 +54,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         vscode.debug.registerDebugAdapterTrackerFactory("vbscript", new VbsDebugTraceFactory()),
         ...new CodeLibrary(context).register(),
         ...new ScriptEncodings().register(),
+        ...new Walkthrough().register(),
         vscode.commands.registerCommand("vbscript.openDocumentation", (page?: string) => openDocumentation(context, page))
     );
 
@@ -191,7 +193,7 @@ class VbsDebugConfigurationProvider implements vscode.DebugConfigurationProvider
         }
 
         if (!config.type && !config.request && !config.name) {
-            const editor = vscode.window.activeTextEditor;
+            const editor = scriptEditor();
 
             if (!editor || editor.document.languageId !== "vbscript") {
                 return undefined;   // let VS Code offer launch.json
@@ -200,7 +202,7 @@ class VbsDebugConfigurationProvider implements vscode.DebugConfigurationProvider
             config.type = "vbscript";
             config.name = "Debug VBScript";
             config.request = "launch";
-            config.program = "${file}";
+            config.program = editor.document.fileName;   // not ${file}: another page may have the focus
         }
 
         config.program ??= "${file}";

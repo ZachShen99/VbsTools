@@ -2,6 +2,8 @@
 
 ## Run commands
 
+![Run Script: output and Problems panel](../../media/screenshots/run.png)
+
 | Command | Shortcut | Description |
 |---|---|---|
 | VBScript: Run Script | Ctrl+F5 | Runs the current script (unsaved changes are saved first) |
@@ -54,6 +56,8 @@ cscript and wscript read only two encodings: **UTF-16 LE with BOM**, or the **sy
 2. **Warns** when a file is UTF-8 with non-ASCII text (accented letters, Chinese, …), or UTF-8 with BOM:
    - UTF-8: the VbsTools host reads it correctly, but cscript, double-clicking and scheduled tasks show garbled text;
    - UTF-8 with BOM: cscript cannot run it at all ("Invalid character").
+![Encoding warning and quick fix](../../media/screenshots/encoding.gif)
+
 3. **Converts**: Ctrl+. on the warning offers *Save as UTF-16 LE* (runs anywhere) and *Save as ANSI*; **VBScript: Save with Encoding…** does the same at any time.
 
 | Encoding | cscript / wscript | VbsTools host | Notes |

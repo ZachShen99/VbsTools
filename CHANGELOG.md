@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0
+
+- Walkthrough **Get Started with VbsTools** (Help → Welcome): a sample script, running, debugging, the
+  Code Library, host environments, the user guide — in English, Simplified Chinese and Japanese
+- Screenshots and animations in the README (the extension's page), the user guide and the walkthrough
+- Run Script and debugging (F5) work while another page has the focus (the walkthrough, a Markdown preview):
+  they use the VBScript editor that is visible
+
 ## 0.1.1
 
 - File encodings: ANSI scripts (GBK, Shift JIS, …) that VS Code shows garbled are reopened with the system

@@ -2,6 +2,8 @@
 
 ## COM 对象的智能提示
 
+![COM 对象的智能提示](../../media/screenshots/intellisense.gif)
+
 插件从本机注册的 COM 类型库读取对象的成员，并根据代码推断变量的类型：
 
 ```vbscript
@@ -40,6 +42,8 @@ End With
 ## 错误检查
 
 边输入边检查，脚本不会被执行：
+
+![错误检查和快速修复](../../media/screenshots/diagnostics.gif)
 
 | 检查 | 级别 |
 |---|---|

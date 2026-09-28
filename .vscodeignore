@@ -7,3 +7,4 @@ build-server.ps1
 .gitignore
 media/icon.svg
 server/**/*.stamp
+media/screenshots/run.gif

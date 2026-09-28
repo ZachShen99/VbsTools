@@ -1,5 +1,7 @@
 # 调试
 
+![调试](../../media/screenshots/debug.gif)
+
 打开脚本按 **F5** 即可开始调试，不需要 `launch.json`。调试时脚本在 VbsTools 脚本宿主中运行，平台（x64 / x86）和参数与"运行脚本"相同。
 
 ## 断点

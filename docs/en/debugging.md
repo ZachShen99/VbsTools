@@ -1,5 +1,7 @@
 # Debugging
 
+![Debugging](../../media/screenshots/debug.gif)
+
 Open a script and press **F5** — no `launch.json` is needed. The script runs in the VbsTools Script Host, with the same platform (x64 / x86) and arguments as *Run Script*.
 
 ## Breakpoints

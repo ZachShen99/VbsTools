@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as vscode from "vscode";
 import { quoteArgument, splitCommandLine } from "./commandLine";
+import { scriptEditor } from "./walkthrough";
 
 /**
  * "VBScript: Run Script" (Ctrl+F5) and "Run with Arguments…" (Ctrl+Shift+F5).
@@ -360,7 +361,7 @@ export function scriptText(file: string): string {
 
 /** The active VBScript document, saved (untitled scripts must be saved first). */
 export async function activeScript(): Promise<vscode.TextDocument | undefined> {
-    const editor = vscode.window.activeTextEditor;
+    const editor = scriptEditor();
 
     if (!editor || editor.document.languageId !== "vbscript") {
         return undefined;

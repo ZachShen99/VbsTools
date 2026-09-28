@@ -2,6 +2,8 @@
 
 The VbsTools icon in the activity bar opens the Code Library, with two groups.
 
+![Code Library](../../media/screenshots/library.gif)
+
 ## Samples
 
 - With VbsEdit installed: VbsEdit's sample collection (about 1,700 samples by topic). The extension looks for `samples2.dat` / `samples.dat` in the VbsEdit installation folder; elsewhere, set `vbscript.library.samplesFile`.
