@@ -2,7 +2,7 @@
   "name": "vbstools-vbscript",
   "displayName": "VbsTools: VBScript",
   "description": "%extension.description%",
-  "version": "0.2.0",
+  "version": "0.3.12",
   "publisher": "zach-shen",
   "author": {
     "name": "Zach Shen"
@@ -110,6 +110,17 @@
             ]
           },
           {
+            "id": "attach",
+            "title": "%walkthrough.attach.title%",
+            "description": "%walkthrough.attach.description%",
+            "media": {
+              "markdown": "%walkthrough.attach.media%"
+            },
+            "completionEvents": [
+              "onCommand:vbscript.checkAttachEnvironment"
+            ]
+          },
+          {
             "id": "docs",
             "title": "%walkthrough.docs.title%",
             "description": "%walkthrough.docs.description%",
@@ -134,7 +145,11 @@
           ".vbs",
           ".vbe"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./media/file-vbs.svg",
+          "dark": "./media/file-vbs.svg"
+        }
       },
       {
         "id": "jsonc",
@@ -171,6 +186,11 @@
       {
         "command": "vbscript.walkthrough.debug",
         "title": "%command.walkthrough.debug%",
+        "category": "VBScript"
+      },
+      {
+        "command": "vbscript.checkAttachEnvironment",
+        "title": "%command.checkAttachEnvironment%",
         "category": "VBScript"
       },
       {
@@ -407,6 +427,11 @@
           "default": "",
           "markdownDescription": "%config.run.scriptHostPath%"
         },
+        "vbscript.attach.checkOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "%config.attach.checkOnStartup%"
+        },
         "vbscript.run.platform": {
           "type": "string",
           "enum": [
@@ -415,6 +440,16 @@
           ],
           "default": "x64",
           "markdownDescription": "%config.run.platform%"
+        },
+        "vbscript.debug.engine": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "instrumentation",
+            "pdm"
+          ],
+          "default": "auto",
+          "markdownDescription": "%config.debug.engine%"
         },
         "vbscript.debug.trace": {
           "type": "boolean",
@@ -442,7 +477,8 @@
           "items": {
             "type": "string",
             "examples": [
-              "WinCC"
+              "WinCC",
+              "Altium"
             ]
           },
           "default": [],
@@ -502,6 +538,15 @@
                 ],
                 "markdownDescription": "%debug.launch.platform%"
               },
+              "debugEngine": {
+                "type": "string",
+                "enum": [
+                  "instrumentation",
+                  "auto",
+                  "pdm"
+                ],
+                "markdownDescription": "%debug.launch.debugEngine%"
+              },
               "stopOnEntry": {
                 "type": "boolean",
                 "description": "%debug.launch.stopOnEntry%",
@@ -523,6 +568,39 @@
                 "description": "%debug.launch.console%"
               }
             }
+          },
+          "attach": {
+            "properties": {
+              "process": {
+                "type": "string",
+                "default": "DXP.exe",
+                "markdownDescription": "%debug.attach.process%"
+              },
+              "platform": {
+                "type": "string",
+                "enum": [
+                  "x86",
+                  "x64"
+                ],
+                "default": "x86",
+                "markdownDescription": "%debug.attach.platform%"
+              },
+              "environments": {
+                "type": "array",
+                "items": { "type": "string" },
+                "markdownDescription": "%debug.attach.environments%"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "default": false,
+                "description": "%debug.attach.stopOnEntry%"
+              },
+              "takeOver": {
+                "type": "boolean",
+                "default": false,
+                "markdownDescription": "%debug.attach.takeOver%"
+              }
+            }
           }
         },
         "initialConfigurations": [
@@ -531,9 +609,25 @@
             "request": "launch",
             "name": "Debug VBScript",
             "program": "${file}"
+          },
+          {
+            "type": "vbscript",
+            "request": "attach",
+            "name": "Attach to Altium DXP",
+            "process": "DXP.exe"
           }
         ],
         "configurationSnippets": [
+          {
+            "label": "%debug.snippet.attach.label%",
+            "description": "%debug.snippet.attach.description%",
+            "body": {
+              "type": "vbscript",
+              "request": "attach",
+              "name": "Attach to Altium DXP",
+              "process": "DXP.exe"
+            }
+          },
           {
             "label": "%debug.snippet0.label%",
             "description": "%debug.snippet0.description%",

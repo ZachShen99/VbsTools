@@ -6,7 +6,7 @@
    Or from a command line:
 
    ```powershell
-   code --install-extension .\vbstools-vbscript-win32-x64-0.2.0.vsix
+   code --install-extension .\vbstools-vbscript-win32-x64-0.3.3.vsix
    ```
 
 2. Run **Developer: Reload Window** (Ctrl+Shift+P).

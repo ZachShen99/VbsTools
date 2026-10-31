@@ -7,6 +7,7 @@ import {
     ServerOptions,
     TransportKind
 } from "vscode-languageclient/node";
+import { checkAttachOnStartup, showAttachCheck } from "./attachCheck";
 import { splitCommandLine } from "./commandLine";
 import { ScriptEncodings } from "./encoding";
 import { CodeLibrary } from "./library";
@@ -55,10 +56,14 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
         ...new CodeLibrary(context).register(),
         ...new ScriptEncodings().register(),
         ...new Walkthrough().register(),
-        vscode.commands.registerCommand("vbscript.openDocumentation", (page?: string) => openDocumentation(context, page))
+        vscode.commands.registerCommand("vbscript.openDocumentation", (page?: string) => openDocumentation(context, page)),
+        vscode.commands.registerCommand("vbscript.checkAttachEnvironment", showAttachCheck)
     );
 
     await startClient(context);
+
+    // Attach debugging needs Windows components of its own (pdm.dll, the Machine Debug Manager): say so early.
+    setTimeout(() => void checkAttachOnStartup(), 3000);
 }
 
 /** The user guide (docs/<language>/*.md) in the Markdown preview: Simplified Chinese or English. */
@@ -179,6 +184,16 @@ async function debugWithArguments(scripts: ScriptRunner): Promise<void> {
 }
 
 
+/**
+ * Where the type files of the workspace are, for the debug adapter: it is a process of its own and does not see what the
+ * language server loaded. With them the Variables view can expand the objects a host application injects (MyApp, Board, ...).
+ */
+function typeFileLocations(config: vscode.DebugConfiguration): void {
+    config.workspaceFolders ??= (vscode.workspace.workspaceFolders ?? []).map(folder => folder.uri.fsPath);
+    config.typeFiles ??= vscode.workspace.getConfiguration("vbscript").get<string[]>("typeFiles", []);
+}
+
+
 /** Fills in a launch configuration: F5 without launch.json debugs the active script. */
 class VbsDebugConfigurationProvider implements vscode.DebugConfigurationProvider {
     constructor(private readonly context: vscode.ExtensionContext, private readonly scripts: ScriptRunner) { }
@@ -190,6 +205,22 @@ class VbsDebugConfigurationProvider implements vscode.DebugConfigurationProvider
         if (process.platform !== "win32") {
             void vscode.window.showErrorMessage(vscode.l10n.t("Debugging VBScript requires Windows."));
             return undefined;
+        }
+
+        // Attach to another application's scripts (Altium DXP, ...): the 32-bit host talks to its debug application.
+        if (config.request === "attach") {
+            const attachPlatform = config.platform === "x64" ? "x64" : "x86";
+            const host = resolveScriptHost(this.context, attachPlatform);
+
+            if (!host) {
+                return undefined;
+            }
+
+            config.platform = attachPlatform;
+            config.process ??= "DXP.exe";
+            config.hostExecutable = host;
+            typeFileLocations(config);
+            return config;
         }
 
         if (!config.type && !config.request && !config.name) {
@@ -209,6 +240,7 @@ class VbsDebugConfigurationProvider implements vscode.DebugConfigurationProvider
 
         const platform = (config.platform ?? vscode.workspace.getConfiguration("vbscript").get<string>("run.platform", "x64")) === "x86" ? "x86" : "x64";
         config.platform = platform;
+        config.debugEngine ??= vscode.workspace.getConfiguration("vbscript").get<string>("debug.engine", "auto");
 
         // Without debugging the script runs with vbscript.run.host (see below).
         if (!config.noDebug) {
@@ -221,12 +253,17 @@ class VbsDebugConfigurationProvider implements vscode.DebugConfigurationProvider
             config.hostExecutable = host;
         }
 
+        typeFileLocations(config);
         return config;
     }
 
     async resolveDebugConfigurationWithSubstitutedVariables(
         _folder: vscode.WorkspaceFolder | undefined,
         config: vscode.DebugConfiguration): Promise<vscode.DebugConfiguration | undefined> {
+
+        if (config.request === "attach") {
+            return config;
+        }
 
         // Debug what is on screen: save the script first.
         const document = vscode.workspace.textDocuments.find(d => d.fileName.toLowerCase() === String(config.program).toLowerCase());

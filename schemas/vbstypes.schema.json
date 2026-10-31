@@ -31,6 +31,30 @@
         "additionalProperties": { "type": ["number", "string"] }
       }
     },
+    "functions": {
+      "type": "object",
+      "description": "Procedures and functions every script of the host can call (global): name → return type, or an object with params.",
+      "additionalProperties": {
+        "oneOf": [
+          { "$ref": "#/definitions/typeName", "description": "A function without arguments that returns this type." },
+          { "$ref": "#/definitions/member" }
+        ]
+      }
+    },
+    "constants": {
+      "type": "object",
+      "description": "Names the host predefines: name → value, or { \"value\": ..., \"doc\": ... }.",
+      "additionalProperties": {
+        "oneOf": [
+          { "type": ["number", "string", "boolean"] },
+          {
+            "type": "object",
+            "required": ["value"],
+            "properties": { "value": { "type": ["number", "string", "boolean"] }, "doc": { "type": "string" } }
+          }
+        ]
+      }
+    },
     "types": {
       "type": "object",
       "description": "Types by name.",
@@ -46,6 +70,7 @@
       "type": "object",
       "properties": {
         "description": { "type": "string" },
+        "extends": { "type": "string", "description": "Another type of this file whose members this type also has." },
         "element": { "$ref": "#/definitions/typeName", "description": "Type of the items in For Each." },
         "open": { "type": "boolean", "description": "The object can have members that are not listed." },
         "members": {

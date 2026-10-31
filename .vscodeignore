@@ -8,3 +8,4 @@ build-server.ps1
 media/icon.svg
 server/**/*.stamp
 media/screenshots/run.gif
+server/**/*.pdb
